@@ -12,12 +12,10 @@ class BlindEncryptionMigrator(
     fun addEncryptedHash(hash: String) = hashingSet.add(hash).also {
         statsBuilder?.countNewHashAdded()
         persistData()
-        it
     }
 
     fun searchEncryptedHash(hash: String) = hashingSet.contains(hash).also {
         statsBuilder?.countHashHit(it)
-        it
     }
 
     private fun persistData() = storageManager.storeHashSet(hashingSet)
